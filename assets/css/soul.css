@@ -1,0 +1,399 @@
+/* ==========================================================================
+   Tema Soul Motion 2026
+   Tercera capa: se carga despues de base.css y components.css y solo
+   redefine marca (paleta, tipografia, formas). Si borras este archivo y su
+   <link>, la app vuelve al layout base sin colores de Soul Motion.
+   ========================================================================== */
+
+:root {
+  /* --- Paleta -------------------------------------------------------------
+     La marca vive en el magenta del isotipo. Un solo acento: --magenta.
+     --plum es su version oscura (hover, textos sobre claro) y --ink el negro
+     del logo. No mezclar otros rosados. */
+  --magenta: #d6157e;
+  --magenta-dark: #a10f5e;
+  --plum: #2a0c22;
+  --ink: #08070a;
+  --ink-soft: #14111a;
+
+  /* Las variables del layout base se reapuntan al acento de Soul Motion.
+     Ningun archivo usa --red directamente pensando en "rojo": es el token
+     de acento heredado, por eso se reapunta en vez de renombrarse. */
+  --red: var(--magenta);
+  --red-dark: var(--magenta-dark);
+  --brand-red: var(--magenta);
+
+  --paper: #faf7fa;
+  --mist: #f3eef3;
+  --white: #fff;
+  --muted: #6e6676;
+  --line: #ece5ee;
+  --shadow: 0 20px 50px rgba(42, 12, 34, 0.10);
+  --radius-lg: 26px;
+  --radius-md: 16px;
+
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.005em;
+}
+
+h1, h2, h3, h4,
+.hero-title,
+.page-heading h1,
+.member-card strong,
+.payment-amount,
+.poster-word {
+  font-family: 'Sora', 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.eyebrow,
+.role-number,
+.nav-index,
+.class-card-index,
+.member-card-label,
+.demo-badge,
+.tag,
+.status-pill {
+  font-family: 'Sora', 'Inter', system-ui, sans-serif;
+  letter-spacing: 0.14em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--magenta);
+  outline-offset: 4px;
+}
+
+/* ---- Intro --------------------------------------------------------------
+   El isotipo es una espiral: la entrada la gira sobre si misma y luego la
+   deja quieta. La cortina sale a los 2.4s, justo despues; si cambias una
+   duracion cambia la otra. */
+.intro {
+  background: radial-gradient(120% 90% at 50% 40%, #1d0716 0%, #08070a 62%);
+  animation-delay: 2.4s;
+}
+.intro-orbit { display: none; }
+.intro-mark { width: min(70vw, 380px); }
+.intro-logo-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-radius: 28px;
+  opacity: 0;
+  transform: rotate(-70deg) scale(0.86);
+  animation: soulSpin 1.25s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+.intro-bloom {
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(214, 21, 126, 0.55) 0%, rgba(214, 21, 126, 0) 62%);
+  opacity: 0;
+  animation: soulBloom 1.6s ease-out 0.35s forwards;
+}
+.intro > span {
+  animation-delay: 1.5s;
+  font-family: 'Sora', sans-serif;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.62);
+}
+@keyframes soulSpin {
+  from { opacity: 0; transform: rotate(-70deg) scale(0.86); }
+  to   { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+@keyframes soulBloom {
+  0%   { opacity: 0; transform: scale(0.7); }
+  55%  { opacity: 0.9; transform: scale(1.05); }
+  100% { opacity: 0.45; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-logo-img, .intro-bloom { animation: none; opacity: 1; transform: none; }
+}
+
+/* ---- Pantalla de acceso ----
+   El layout base esta pensado en oscuro (texto blanco sobre fondo negro) y a
+   Soul Motion le queda: el isotipo solo respira sobre negro. Por eso aqui se
+   revierte el acceso claro que traia la capa de componentes. */
+.access {
+  background: radial-gradient(120% 90% at 10% 0%, #1d0716 0%, #08070a 58%);
+  color: #fff;
+}
+.access-logo {
+  width: 150px;
+  height: auto;
+  padding: 0;
+  margin-bottom: 44px;
+  border-radius: 22px;
+  background: transparent;
+  mix-blend-mode: screen;
+}
+.access-card h1 {
+  color: #fff;
+  font-size: clamp(38px, 5.4vw, 60px);
+  line-height: 1.02;
+}
+.access-card .eyebrow { color: var(--magenta); }
+.access-copy { color: rgba(255, 255, 255, 0.66); }
+.access-foot {
+  margin: 26px 0 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.42);
+}
+.access-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/* Poster: el degradado de la espiral, sin foto. */
+.access-poster {
+  background: radial-gradient(120% 100% at 30% 20%, #4a0f34 0%, #1a0714 55%, #08070a 100%);
+  overflow: hidden;
+}
+.access-poster::before {
+  content: '';
+  position: absolute;
+  inset: auto -30% -40% -30%;
+  height: 70%;
+  background: radial-gradient(closest-side, rgba(214, 21, 126, 0.42), transparent);
+}
+/* El poster es la grafica de marca, no tipografia: se apagan el wordmark y el
+   aro del layout base y queda la imagen a sangre. */
+.access-poster .poster-word,
+.access-poster .poster-ring { display: none; }
+.access-poster::before { display: none; }
+.access-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.role-option { transition: padding 0.2s ease, background 0.2s ease; }
+.role-option small { color: rgba(255, 255, 255, 0.55); }
+.role-option.is-primary {
+  padding-left: 16px;
+  background: linear-gradient(90deg, var(--magenta), rgba(161, 15, 94, 0.55));
+}
+.role-option.is-primary .role-number,
+.role-option.is-primary small { color: rgba(255, 255, 255, 0.82); }
+
+/* ---- Shell --------------------------------------------------------------
+   La barra lateral pasa a negro: el logo del cliente solo respira sobre
+   fondo oscuro, y asi el magenta de la navegacion activa tiene contraste. */
+.sidebar {
+  background: var(--ink);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+.sidebar .brand img {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+}
+.nav-item {
+  /* Los items de navegacion son <button>: sin esto el navegador les pone su
+     propio fondo gris y se ven como cajas claras sobre la barra negra. */
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+}
+.side-nav .nav-item {
+  color: rgba(255, 255, 255, 0.62);
+  border-radius: 12px;
+}
+.side-nav .nav-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+.side-nav .nav-item.is-active {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(214, 21, 126, 0.9), rgba(161, 15, 94, 0.55));
+}
+.side-nav .nav-item.is-active .nav-index { color: #fff; }
+.side-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.side-link {
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.side-link:hover { color: #fff; border-color: rgba(214, 21, 126, 0.6); }
+.demo-badge {
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(214, 21, 126, 0.16);
+  border: 1px solid rgba(214, 21, 126, 0.32);
+}
+.demo-badge i { background: var(--magenta); }
+
+.topbar {
+  background: rgba(250, 247, 250, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--ink);
+}
+.topbar-kicker { color: var(--ink); font-family: 'Sora', sans-serif; }
+.topbar-date { color: var(--muted); }
+.profile-chip {
+  background: var(--ink);
+  color: #fff;
+  border: none;
+}
+
+/* ---- Superficies --------------------------------------------------------
+   Menos sombra y mas borde que In Motion: las tarjetas se apoyan en el papel
+   en vez de flotar. */
+.surface-card,
+.compact-card,
+.section,
+.class-card,
+.teacher-class,
+.table-wrap {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+.surface-card:hover,
+.class-card:hover { border-color: rgba(214, 21, 126, 0.35); }
+
+.student-hero,
+.teacher-hero,
+.admin-intro {
+  background: linear-gradient(135deg, #14111a 0%, #2a0c22 58%, #4a0f34 100%);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+.student-hero::after,
+.teacher-hero::after,
+.admin-intro::after {
+  content: '';
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(214, 21, 126, 0.5), transparent);
+  pointer-events: none;
+}
+.student-hero .eyebrow,
+.teacher-hero .eyebrow,
+.admin-intro .eyebrow { color: rgba(255, 255, 255, 0.66); }
+.hero-title { color: #fff; font-size: clamp(30px, 3.6vw, 46px); }
+/* La tarjeta blanca de "proxima clase" se estiraba a la altura del hero y
+   quedaba medio vacia: aca se ajusta al contenido. */
+.student-hero .next-class {
+  align-self: start;
+  min-height: 0;
+  gap: 10px;
+  border-radius: var(--radius-md);
+}
+.student-hero .next-class strong { font-size: 1.15rem; line-height: 1.25; }
+
+.button--red {
+  background: var(--magenta);
+  border-color: var(--magenta);
+  color: #fff;
+}
+.button--red:hover:not(:disabled) {
+  background: var(--magenta-dark);
+  border-color: var(--magenta-dark);
+}
+.button--ghost:hover:not(:disabled) {
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+.button { border-radius: 12px; }
+
+.tag--red,
+.status-pill.is-pending {
+  background: rgba(214, 21, 126, 0.12);
+  color: var(--magenta-dark);
+  border-color: rgba(214, 21, 126, 0.28);
+}
+.status-pill.is-paid {
+  background: rgba(16, 137, 96, 0.12);
+  color: #0d7a55;
+  border-color: rgba(16, 137, 96, 0.26);
+}
+.status-pill.is-late {
+  background: rgba(196, 34, 34, 0.1);
+  color: #b02121;
+  border-color: rgba(196, 34, 34, 0.24);
+}
+.filter-chip.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+.day-pill.is-today {
+  background: var(--magenta);
+  border-color: var(--magenta);
+  color: #fff;
+}
+
+/* Carne: el magenta va de fondo y el QR queda en blanco. */
+.member-card {
+  background: linear-gradient(145deg, #2a0c22 0%, #08070a 52%, #a10f5e 140%);
+  color: #fff;
+  border: none;
+}
+.member-card-label { color: rgba(255, 255, 255, 0.55); }
+/* El carne base pinta el panel del QR en el color de acento a todo el ancho.
+   En negro sobre magenta pierde legibilidad: aca se vuelve una ficha compacta. */
+.member-card .qr-panel {
+  display: grid;
+  width: max-content;
+  align-self: start;
+  justify-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.member-card .qr-code {
+  width: 168px;
+  padding: 12px;
+  border-radius: 14px;
+  background: #fff;
+}
+.member-card .qr-demo-label {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+.member-card::after { border-color: rgba(214, 21, 126, 0.55); }
+.member-card h2 { font-size: clamp(2rem, 3.4vw, 3rem); }
+.member-card .member-id { color: var(--magenta); }
+
+.bottom-nav {
+  background: rgba(8, 7, 10, 0.94);
+  border-top: none;
+  backdrop-filter: blur(10px);
+}
+.bottom-nav .nav-item { color: rgba(255, 255, 255, 0.55); }
+.bottom-nav .nav-item.is-active { color: var(--magenta); }
+
+.modal { border-radius: var(--radius-lg); }
+.toast {
+  background: var(--ink);
+  color: #fff;
+  border-left: 3px solid var(--magenta);
+}

@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Temporary recordings and tests
+*.wav
+.playwright-cli/
+output/
+
+# Vercel
+.vercel/
+
+# Dependencies and logs
+node_modules/
+*.log

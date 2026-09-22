@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+  <meta name="theme-color" content="#08070A" />
+  <meta name="description" content="Prototipo navegable de gestión para Soul Motion Academia de Baile." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Soul Motion" />
+  <meta name="application-name" content="Soul Motion" />
+  <title>Soul Motion · Academia de Baile</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/icon-180.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/base.css?v=2" />
+  <link rel="stylesheet" href="./assets/css/components.css?v=2" />
+  <link rel="stylesheet" href="./assets/css/soul.css?v=2" />
+</head>
+<body>
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-mark">
+      <div class="intro-bloom" aria-hidden="true"></div>
+      <img class="intro-logo-img" src="./assets/soulmotion-logo.png" alt="" />
+    </div>
+    <span>El alma se mueve primero</span>
+  </div>
+
+  <section class="access" id="accessView" aria-labelledby="accessTitle">
+    <div class="access-grid" aria-hidden="true"></div>
+    <div class="access-card">
+      <img class="access-logo" src="./assets/soulmotion-logo.png" alt="Soul Motion Academia de Baile" />
+      <p class="eyebrow">Prototipo navegable · Datos demo</p>
+      <h1 id="accessTitle">Entrá a tu ritmo.</h1>
+      <p class="access-copy">Elegí cómo querés entrar: como alumno, maestro, administración o encargado. Todo lo que hagas se guarda solo en este navegador.</p>
+      <div class="role-options" role="group" aria-label="Elegir acceso de demostración">
+        <button class="role-option is-primary" type="button" data-enter-role="student">
+          <span class="role-number">01</span>
+          <span><strong>Alumno</strong><small>Clases, carné y asistencia</small></span>
+          <span class="role-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="role-option" type="button" data-enter-role="teacher">
+          <span class="role-number">02</span>
+          <span><strong>Maestro</strong><small>Agenda y control de clase</small></span>
+          <span class="role-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="role-option" type="button" data-enter-role="admin">
+          <span class="role-number">03</span>
+          <span><strong>Administración</strong><small>Alumnos, pagos y mora</small></span>
+          <span class="role-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="role-option" type="button" data-enter-role="guardian">
+          <span class="role-number">04</span>
+          <span><strong>Encargado</strong><small>Solo la información de sus hijos</small></span>
+          <span class="role-arrow" aria-hidden="true">↗</span>
+        </button>
+      </div>
+      <p class="access-foot">Sin base de datos ni servidor: la demo corre completa en tu navegador.</p>
+    </div>
+    <aside class="access-poster" aria-hidden="true">
+      <img class="access-photo" src="./assets/acceso-soulmotion.jpg" alt="" />
+    </aside>
+  </section>
+
+  <div class="app-shell is-hidden" id="appShell">
+    <aside class="sidebar" id="sidebar" aria-label="Menú de la aplicación">
+      <a href="#/inicio" class="brand" aria-label="Soul Motion, inicio">
+        <img src="./assets/soulmotion-logo.png" alt="Soul Motion" />
+      </a>
+      <nav class="side-nav" id="sideNav" aria-label="Navegación principal"></nav>
+      <div class="side-bottom">
+        <span class="demo-badge"><i aria-hidden="true"></i> Modo demostración</span>
+        <button class="side-link" type="button" id="exitDemo">Cambiar acceso <span>↙</span></button>
+        <button class="side-link" type="button" id="resetDemo">Reiniciar demo <span>⟲</span></button>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="menu-button" type="button" id="menuButton" aria-label="Abrir menú" aria-expanded="false" aria-controls="sidebar">
+          <span></span><span></span>
+        </button>
+        <img class="topbar-logo" src="./assets/soulmotion-logo.png" alt="" />
+        <div>
+          <p class="topbar-kicker" id="topbarKicker">Portal de alumno</p>
+          <p class="topbar-date" id="topbarDate"></p>
+        </div>
+        <div class="topbar-actions">
+          <label class="role-switcher" for="roleSwitcher">
+            <span class="sr-only">Cambiar rol de demostración</span>
+            <select id="roleSwitcher">
+              <option value="student">Alumno · Camila</option>
+              <option value="teacher">Maestro · Bruno</option>
+              <option value="admin">Admin · Diana</option>
+              <option value="guardian">Encargado · Lucía</option>
+            </select>
+          </label>
+          <button class="profile-chip" type="button" id="profileButton" aria-label="Perfil de demostración">
+            <span id="profileInitials">CO</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="main-content" id="mainContent" tabindex="-1" aria-labelledby="topbarKicker"></main>
+    </div>
+
+    <nav class="bottom-nav" id="bottomNav" aria-label="Navegación móvil"></nav>
+  </div>
+
+  <div class="modal-layer is-hidden" id="modalLayer" aria-hidden="true">
+    <button class="modal-backdrop" type="button" tabindex="-1" data-close-modal aria-label="Cerrar ventana"></button>
+    <section class="modal" role="dialog" aria-modal="true" tabindex="-1" aria-labelledby="modalTitle">
+      <header class="modal-header">
+        <div>
+          <p class="eyebrow" id="modalEyebrow">Acción demo</p>
+          <h2 id="modalTitle">Detalle</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-modal aria-label="Cerrar">×</button>
+      </header>
+      <div class="modal-body" id="modalBody"></div>
+    </section>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+
+  <script type="module" src="./assets/js/app.js?v=2"></script>
+</body>
+</html>
