@@ -12,3 +12,4 @@ output/
 # Dependencies and logs
 node_modules/
 *.log
+.vercel
